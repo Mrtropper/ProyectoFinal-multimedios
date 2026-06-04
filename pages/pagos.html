@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagos — Sistema Hotelero</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-brand"><span class="brand-icon">🏨</span><span class="brand-name">HotelAdmin</span></div>
+        <nav class="nav-links">
+            <a href="../index.html" class="nav-link">Inicio</a>
+            <a href="hoteles.html" class="nav-link">Hoteles</a>
+            <a href="sedes.html" class="nav-link">Sedes</a>
+            <a href="habitaciones.html" class="nav-link">Habitaciones</a>
+            <a href="clientes.html" class="nav-link">Clientes</a>
+            <a href="reservaciones.html" class="nav-link">Reservaciones</a>
+            <a href="pagos.html" class="nav-link">Pagos</a>
+        </nav>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="page-header">
+            <h1>💳 Pagos</h1>
+            <a href="../index.html" class="back-link">← Volver al panel</a>
+        </div>
+
+        <div class="panel" id="form-panel">
+            <div class="panel-header">
+                <h2>Registrar pago</h2>
+                <button class="btn btn-outline btn-sm" id="btn-nuevo">+ Nuevo</button>
+            </div>
+            <div class="panel-body">
+                <form id="form-pago" novalidate>
+                    <input type="hidden" id="pago-id" />
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="pago-reservacion">Reservación</label>
+                            <select id="pago-reservacion"><option value="">Cargando...</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pago-monto">Monto (₡)</label>
+                            <input type="number" id="pago-monto" min="0" step="0.01" placeholder="Ej: 90000" />
+                        </div>
+                        <div class="form-group">
+                            <label for="pago-metodo">Método de pago</label>
+                            <select id="pago-metodo">
+                                <option value="efectivo">Efectivo</option>
+                                <option value="tarjeta">Tarjeta</option>
+                                <option value="transferencia">Transferencia</option>
+                                <option value="sinpe">SINPE Móvil</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pago-fecha">Fecha de pago</label>
+                            <input type="date" id="pago-fecha" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar</button>
+                        <button type="button" class="btn btn-outline" onclick="location.reload()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header"><h2>Pagos registrados</h2></div>
+            <div class="panel-body">
+                <div class="table-wrap" id="tabla-wrap"><div class="spinner"></div></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer"><p>Sistema Hotelero &copy; 2025</p></footer>
+    <script type="module" src="../js/pagos/pagos.js"></script>
+</body>
+</html>

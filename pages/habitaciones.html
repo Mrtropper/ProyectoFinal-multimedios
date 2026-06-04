@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habitaciones — Sistema Hotelero</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-brand"><span class="brand-icon">🏨</span><span class="brand-name">HotelAdmin</span></div>
+        <nav class="nav-links">
+            <a href="../index.html" class="nav-link">Inicio</a>
+            <a href="hoteles.html" class="nav-link">Hoteles</a>
+            <a href="sedes.html" class="nav-link">Sedes</a>
+            <a href="habitaciones.html" class="nav-link">Habitaciones</a>
+            <a href="clientes.html" class="nav-link">Clientes</a>
+            <a href="reservaciones.html" class="nav-link">Reservaciones</a>
+            <a href="pagos.html" class="nav-link">Pagos</a>
+        </nav>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="page-header">
+            <h1>🛏️ Habitaciones</h1>
+            <a href="../index.html" class="back-link">← Volver al panel</a>
+        </div>
+
+        <div class="panel" id="form-panel">
+            <div class="panel-header">
+                <h2>Datos de la habitación</h2>
+                <button class="btn btn-outline btn-sm" id="btn-nuevo">+ Nuevo</button>
+            </div>
+            <div class="panel-body">
+                <form id="form-hab" novalidate>
+                    <input type="hidden" id="hab-id" />
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="hab-numero">Número</label>
+                            <input type="text" id="hab-numero" placeholder="Ej: 101" />
+                        </div>
+                        <div class="form-group">
+                            <label for="hab-tipo">Tipo</label>
+                            <select id="hab-tipo">
+                                <option value="simple">Simple</option>
+                                <option value="doble">Doble</option>
+                                <option value="suite">Suite</option>
+                                <option value="presidencial">Presidencial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="hab-precio">Precio por noche (₡)</label>
+                            <input type="number" id="hab-precio" min="0" step="0.01" placeholder="Ej: 45000" />
+                        </div>
+                        <div class="form-group">
+                            <label for="hab-capacidad">Capacidad</label>
+                            <input type="number" id="hab-capacidad" min="1" placeholder="Ej: 2" />
+                        </div>
+                        <div class="form-group">
+                            <label for="hab-sede">Sede</label>
+                            <select id="hab-sede"><option value="">Cargando...</option></select>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar</button>
+                        <button type="button" class="btn btn-outline" onclick="location.reload()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header"><h2>Habitaciones registradas</h2></div>
+            <div class="panel-body">
+                <div class="table-wrap" id="tabla-wrap"><div class="spinner"></div></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer"><p>Sistema Hotelero &copy; 2025</p></footer>
+    <script type="module" src="../js/habitaciones/habitaciones.js"></script>
+</body>
+</html>

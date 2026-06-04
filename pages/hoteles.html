@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hoteles — Sistema Hotelero</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon">🏨</span>
+            <span class="brand-name">HotelAdmin</span>
+        </div>
+        <nav class="nav-links">
+            <a href="../index.html" class="nav-link">Inicio</a>
+            <a href="hoteles.html" class="nav-link">Hoteles</a>
+            <a href="sedes.html" class="nav-link">Sedes</a>
+            <a href="habitaciones.html" class="nav-link">Habitaciones</a>
+            <a href="clientes.html" class="nav-link">Clientes</a>
+            <a href="reservaciones.html" class="nav-link">Reservaciones</a>
+            <a href="pagos.html" class="nav-link">Pagos</a>
+        </nav>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="page-header">
+            <h1>🏨 Hoteles</h1>
+            <a href="../index.html" class="back-link">← Volver al panel</a>
+        </div>
+
+        <!-- Formulario -->
+        <div class="panel" id="form-panel">
+            <div class="panel-header">
+                <h2 id="form-title">Nuevo Hotel</h2>
+                <button class="btn btn-outline btn-sm" id="btn-nuevo">+ Nuevo</button>
+            </div>
+            <div class="panel-body">
+                <form id="form-hotel" novalidate>
+                    <input type="hidden" id="hotel-id" />
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="hotel-nombre">Nombre</label>
+                            <input type="text" id="hotel-nombre" placeholder="Ej: Hotel Central" />
+                        </div>
+                        <div class="form-group">
+                            <label for="hotel-direccion">Dirección</label>
+                            <input type="text" id="hotel-direccion" placeholder="Ej: Av. Principal 100" />
+                        </div>
+                        <div class="form-group">
+                            <label for="hotel-telefono">Teléfono</label>
+                            <input type="text" id="hotel-telefono" placeholder="Ej: 2200-0000" />
+                        </div>
+                        <div class="form-group">
+                            <label for="hotel-email">Correo electrónico</label>
+                            <input type="email" id="hotel-email" placeholder="hotel@ejemplo.com" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar</button>
+                        <button type="button" class="btn btn-outline" id="btn-nuevo">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabla -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Hoteles registrados</h2>
+                <button class="btn btn-outline btn-sm" onclick="cargarHotelesBtn()">↻ Actualizar</button>
+            </div>
+            <div class="panel-body">
+                <div class="table-wrap" id="tabla-wrap">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Sistema Hotelero &copy; 2025</p>
+    </footer>
+
+    <script type="module" src="../js/hoteles/hoteles.js"></script>
+    <script>function cargarHotelesBtn(){ location.reload(); }</script>
+</body>
+</html>

@@ -1,33 +1,70 @@
-<!doctype html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <title>Empresa hotelera</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema Hotelero</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon">🏨</span>
+            <span class="brand-name">HotelAdmin</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link active">Inicio</a>
+            <a href="pages/hoteles.html" class="nav-link">Hoteles</a>
+            <a href="pages/sedes.html" class="nav-link">Sedes</a>
+            <a href="pages/habitaciones.html" class="nav-link">Habitaciones</a>
+            <a href="pages/clientes.html" class="nav-link">Clientes</a>
+            <a href="pages/reservaciones.html" class="nav-link">Reservaciones</a>
+            <a href="pages/pagos.html" class="nav-link">Pagos</a>
+        </nav>
+    </header>
 
-        <!-- Bootstrap CSS v5.3.8 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-            crossorigin="anonymous"
-        />
-    </head>
+    <main class="dashboard">
+        <section class="hero">
+            <h1>Panel de Administración</h1>
+            <p>Sistema de gestión hotelera. Administrá hoteles, sedes, habitaciones, clientes, reservaciones y pagos desde un solo lugar.</p>
+        </section>
 
-    <body>
-        <header>
-            <!-- place navbar here -->
-        </header>
-        <main></main>
-        <footer>
-            <!-- place footer here -->
-        </footer>
-        <!-- Bootstrap JavaScript Bundle (includes Popper) -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+        <div class="cards-grid">
+            <a href="pages/hoteles.html" class="card">
+                <div class="card-icon">🏨</div>
+                <h3>Hoteles</h3>
+                <p>Administrá los hoteles registrados en el sistema.</p>
+            </a>
+            <a href="pages/sedes.html" class="card">
+                <div class="card-icon">📍</div>
+                <h3>Sedes</h3>
+                <p>Gestioná las sedes de cada hotel.</p>
+            </a>
+            <a href="pages/habitaciones.html" class="card">
+                <div class="card-icon">🛏️</div>
+                <h3>Habitaciones</h3>
+                <p>Controlá las habitaciones disponibles.</p>
+            </a>
+            <a href="pages/clientes.html" class="card">
+                <div class="card-icon">👤</div>
+                <h3>Clientes</h3>
+                <p>Registrá y actualizá la información de clientes.</p>
+            </a>
+            <a href="pages/reservaciones.html" class="card">
+                <div class="card-icon">📅</div>
+                <h3>Reservaciones</h3>
+                <p>Manejá las reservaciones realizadas.</p>
+            </a>
+            <a href="pages/pagos.html" class="card">
+                <div class="card-icon">💳</div>
+                <h3>Pagos</h3>
+                <p>Procesá y consultá pagos de reservaciones.</p>
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Sistema Hotelero &copy; 2025 — Proyecto Final Multimedios</p>
+    </footer>
+</body>
 </html>
