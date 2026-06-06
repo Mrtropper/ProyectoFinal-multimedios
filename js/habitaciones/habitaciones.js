@@ -2,8 +2,8 @@
 import { api }                        from '../api.js';
 import { toast, setError, clearError, spinner, markActiveNav } from '../app.js';
 
-const ENDPOINT    = '/habitacion/';
-const SEDE_EP     = '/sede/';
+const ENDPOINT    = '/habitacion/habitacion.php';
+const SEDE_EP     = '/sede/sede.php';
 
 const form        = document.getElementById('form-hab');
 const idInput     = document.getElementById('hab-id');
@@ -81,14 +81,17 @@ form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validar()) return;
     const payload = {
+        id_sede: parseInt(sedeSelect.value),
         numero: numInput.value.trim(),
         tipo: tipoInput.value,
+        descripcion: '',
         precio: parseFloat(precioInput.value),
         capacidad: parseInt(capacInput.value),
-        idSede: sedeSelect.value,
+        estado: 'Disponible',
+        usuario: 'Mario'
     };
     try {
-        if (editando) { await api.put(ENDPOINT + idInput.value + '/', payload); toast('Habitación actualizada.'); }
+        if (editando) { await api.put( ENDPOINT, { id: idInput.value, ...payload}); toast('Habitación actualizada.'); }
         else          { await api.post(ENDPOINT, payload);                      toast('Habitación creada.'); }
         resetForm(); cargar();
     } catch(e) { toast(e.message, 'error'); }
@@ -108,7 +111,7 @@ window.editarHab = function(h) {
 
 window.desactivarHab = async function(id) {
     if (!confirm('¿Desactivar esta habitación?')) return;
-    try { await api.delete(ENDPOINT + id + '/'); toast('Habitación desactivada.', 'info'); cargar(); }
+    try { await api.delete( ENDPOINT, { id } ); toast('Habitación desactivada.', 'info'); cargar(); }
     catch(e) { toast(e.message, 'error'); }
 };
 

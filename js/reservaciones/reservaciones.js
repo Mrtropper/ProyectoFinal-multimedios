@@ -2,9 +2,9 @@
 import { api }                        from '../api.js';
 import { toast, setError, clearError, spinner, markActiveNav } from '../app.js';
 
-const ENDPOINT   = '/reservacion/';
-const CLIENTE_EP = '/cliente/';
-const HAB_EP     = '/habitacion/';
+const ENDPOINT   = '/reservacion/reservacion.php';
+const CLIENTE_EP = '/cliente/cliente.php';
+const HAB_EP     = '/habitacion/habitacion.php';
 
 const form          = document.getElementById('form-res');
 const idInput       = document.getElementById('res-id');
@@ -88,14 +88,17 @@ form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validar()) return;
     const payload = {
-        fechaEntrada: fechaInInput.value,
-        fechaSalida:  fechaOutInput.value,
-        idCliente:    clienteSelect.value,
-        idHabitacion: habSelect.value,
-        observacion:  observInput.value.trim(),
+        id_cliente: parseInt(clienteSelect.value),
+        id_habitacion: parseInt(habSelect.value),
+        fecha_entrada: fechaInInput.value,
+        fecha_salida: fechaOutInput.value,
+        cantidad_personas: 2,
+        estado: 'Pendiente',
+        total: 0,
+        usuario: 'Mario'
     };
     try {
-        if (editando) { await api.put(ENDPOINT + idInput.value + '/', payload); toast('Reservación actualizada.'); }
+        if (editando) { await api.put( ENDPOINT,{ id: idInput.value, ...payload }); toast('Reservación actualizada.'); }
         else          { await api.post(ENDPOINT, payload);                      toast('Reservación creada.'); }
         resetForm(); cargar();
     } catch(e) { toast(e.message, 'error'); }
@@ -115,7 +118,7 @@ window.editarRes = function(r) {
 
 window.desactivarRes = async function(id) {
     if (!confirm('¿Desactivar esta reservación?')) return;
-    try { await api.delete(ENDPOINT + id + '/'); toast('Reservación desactivada.', 'info'); cargar(); }
+    try { await api.delete( ENDPOINT, { id } ); toast('Reservación desactivada.', 'info'); cargar(); }
     catch(e) { toast(e.message, 'error'); }
 };
 

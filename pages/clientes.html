@@ -8,24 +8,17 @@
 </head>
 <body>
     <header class="navbar">
-        <div class="nav-brand"><span class="brand-icon">🏨</span><span class="brand-name">HotelAdmin</span></div>
-        <nav class="nav-links">
-            <a href="../index.html" class="nav-link">Inicio</a>
-            <a href="hoteles.html" class="nav-link">Hoteles</a>
-            <a href="sedes.html" class="nav-link">Sedes</a>
-            <a href="habitaciones.html" class="nav-link">Habitaciones</a>
-            <a href="clientes.html" class="nav-link">Clientes</a>
-            <a href="reservaciones.html" class="nav-link">Reservaciones</a>
-            <a href="pagos.html" class="nav-link">Pagos</a>
-        </nav>
+        <div class="nav-brand">
+            <span class="brand-name">Sistema hotelero</span>
+        </div>
     </header>
 
     <main class="page-wrapper">
         <div class="page-header">
-            <h1>👤 Clientes</h1>
+            <h1>Gestión de Clientes</h1>
             <a href="../index.html" class="back-link">← Volver al panel</a>
         </div>
-
+        
         <div class="panel" id="form-panel">
             <div class="panel-header">
                 <h2>Datos del cliente</h2>
@@ -37,23 +30,23 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="cli-nombre">Nombre</label>
-                            <input type="text" id="cli-nombre" placeholder="Ej: Juan" />
+                            <input type="text" id="cli-nombre" placeholder="Ej: Fabricio" />
                         </div>
                         <div class="form-group">
                             <label for="cli-apellido">Apellido</label>
-                            <input type="text" id="cli-apellido" placeholder="Ej: Pérez" />
+                            <input type="text" id="cli-apellido" placeholder="Ej: Amores" />
                         </div>
                         <div class="form-group">
                             <label for="cli-cedula">Cédula / Identificación</label>
-                            <input type="text" id="cli-cedula" placeholder="Ej: 1-0000-0000" />
+                            <input type="text" id="cli-cedula" placeholder="Ej: 2-0841-6894" />
                         </div>
                         <div class="form-group">
                             <label for="cli-telefono">Teléfono</label>
-                            <input type="text" id="cli-telefono" placeholder="Ej: 8888-0000" />
+                            <input type="text" id="cli-telefono" placeholder="Ej: 8604-9812" />
                         </div>
                         <div class="form-group">
                             <label for="cli-email">Correo electrónico</label>
-                            <input type="email" id="cli-email" placeholder="cliente@ejemplo.com" />
+                            <input type="email" id="cli-email" placeholder="cliente@gmail.com" />
                         </div>
                     </div>
                     <div class="form-actions">
@@ -65,14 +58,14 @@
         </div>
 
         <div class="panel">
-            <div class="panel-header"><h2>Clientes registrados</h2></div>
+            <div class="panel-header"><h2>Clientes</h2></div>
             <div class="panel-body">
                 <div class="table-wrap" id="tabla-wrap"><div class="spinner"></div></div>
             </div>
         </div>
     </main>
 
-    <footer class="footer"><p>Sistema Hotelero &copy; 2025</p></footer>
+    <footer class="footer"><p>Sistema Hotelero &copy; 2026 — Proyecto Final Multimedios</p></footer>
     <script type="module" src="../js/clientes/clientes.js"></script>
 </body>
 </html>

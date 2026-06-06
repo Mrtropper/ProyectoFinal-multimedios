@@ -2,7 +2,7 @@
 import { api }                        from '../api.js';
 import { toast, setError, clearError, spinner, markActiveNav } from '../app.js';
 
-const ENDPOINT = '/hotel/';
+const ENDPOINT = '/hotel/hotel.php';
 
 // ── referencias al DOM ──────────────────────────────────────────────────────
 const form      = document.getElementById('form-hotel');
@@ -13,7 +13,6 @@ const telInput  = document.getElementById('hotel-telefono');
 const emailInput= document.getElementById('hotel-email');
 const btnGuardar= document.getElementById('btn-guardar');
 const btnNuevo  = document.getElementById('btn-nuevo');
-const tableBody = document.getElementById('tabla-hoteles');
 
 let editando = false;
 
@@ -37,6 +36,7 @@ function renderTabla(hoteles) {
         tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:2rem;color:#6b7c93;">No hay hoteles registrados.</td></tr>';
         return;
     }
+    const tableBody = document.getElementById('tabla-hoteles');
     tableBody.innerHTML = hoteles.map(h => `
         <tr>
             <td>${h.id ?? h.idHotel ?? ''}</td>
@@ -89,15 +89,23 @@ form.addEventListener('submit', async e => {
     if (!validarForm()) return;
 
     const payload = {
-        nombre:    nombreInput.value.trim(),
-        direccion: dirInput.value.trim(),
-        telefono:  telInput.value.trim(),
-        email:     emailInput.value.trim(),
+        nombre: nombreInput.value.trim(),
+        descripcion: dirInput.value.trim(),
+        telefono: telInput.value.trim(),
+        correo: emailInput.value.trim(),
+        sitio_web: '',
+        usuario: 'Mario'
     };
 
     try {
         if (editando) {
-            await api.put(ENDPOINT + idInput.value + '/', payload);
+            await api.put(
+                ENDPOINT,
+                {
+                    id: idInput.value,
+                    ...payload
+                }
+            );
             toast('Hotel actualizado correctamente.');
         } else {
             await api.post(ENDPOINT, payload);
@@ -126,7 +134,10 @@ window.editarHotel = function(h) {
 window.desactivarHotel = async function(id) {
     if (!confirm('¿Desactivar este hotel?')) return;
     try {
-        await api.delete(ENDPOINT + id + '/');
+        await api.delete(
+            ENDPOINT,
+            { id }
+        );
         toast('Hotel desactivado.', 'info');
         cargarHoteles();
     } catch(e) { toast(e.message, 'error'); }

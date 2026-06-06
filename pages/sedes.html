@@ -8,24 +8,16 @@
 </head>
 <body>
     <header class="navbar">
-        <div class="nav-brand"><span class="brand-icon">🏨</span><span class="brand-name">HotelAdmin</span></div>
-        <nav class="nav-links">
-            <a href="../index.html" class="nav-link">Inicio</a>
-            <a href="hoteles.html" class="nav-link">Hoteles</a>
-            <a href="sedes.html" class="nav-link">Sedes</a>
-            <a href="habitaciones.html" class="nav-link">Habitaciones</a>
-            <a href="clientes.html" class="nav-link">Clientes</a>
-            <a href="reservaciones.html" class="nav-link">Reservaciones</a>
-            <a href="pagos.html" class="nav-link">Pagos</a>
-        </nav>
+        <div class="nav-brand">
+            <span class="brand-name">Sistema hotelero</span>
+        </div>
     </header>
-
     <main class="page-wrapper">
         <div class="page-header">
-            <h1>📍 Sedes</h1>
+            <h1>Gestión de Sedes</h1>
             <a href="../index.html" class="back-link">← Volver al panel</a>
         </div>
-
+        
         <div class="panel" id="form-panel">
             <div class="panel-header">
                 <h2>Datos de la sede</h2>
@@ -37,15 +29,15 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="sede-nombre">Nombre</label>
-                            <input type="text" id="sede-nombre" placeholder="Ej: Sede Norte" />
+                            <input type="text" id="sede-nombre" placeholder="Ej: Sede Guanacaste" />
                         </div>
                         <div class="form-group">
                             <label for="sede-direccion">Dirección</label>
-                            <input type="text" id="sede-direccion" placeholder="Ej: Calle 5, San José" />
+                            <input type="text" id="sede-direccion" placeholder="Ej: Frente a la playa flamingo" />
                         </div>
                         <div class="form-group">
                             <label for="sede-telefono">Teléfono</label>
-                            <input type="text" id="sede-telefono" placeholder="Ej: 2200-1111" />
+                            <input type="text" id="sede-telefono" placeholder="Ej: 2445-5152" />
                         </div>
                         <div class="form-group">
                             <label for="sede-hotel">Hotel</label>
@@ -62,7 +54,7 @@
 
         <div class="panel">
             <div class="panel-header">
-                <h2>Sedes registradas</h2>
+                <h2>Sedes</h2>
             </div>
             <div class="panel-body">
                 <div class="table-wrap" id="tabla-wrap">
@@ -72,7 +64,7 @@
         </div>
     </main>
 
-    <footer class="footer"><p>Sistema Hotelero &copy; 2025</p></footer>
+    <footer class="footer"><p>Sistema Hotelero &copy; 2026 — Proyecto Final Multimedios</p></footer>
     <script type="module" src="../js/sedes/sedes.js"></script>
     <script>
         document.getElementById('btn-cancelar')?.addEventListener('click', () => location.reload());

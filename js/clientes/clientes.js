@@ -2,7 +2,7 @@
 import { api }                        from '../api.js';
 import { toast, setError, clearError, spinner, markActiveNav } from '../app.js';
 
-const ENDPOINT = '/cliente/';
+const ENDPOINT = '/cliente/cliente.php';
 
 const form       = document.getElementById('form-cliente');
 const idInput    = document.getElementById('cli-id');
@@ -74,14 +74,15 @@ form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validar()) return;
     const payload = {
-        nombre:   nombreInput.value.trim(),
-        apellido: apellidoInput.value.trim(),
-        cedula:   cedulaInput.value.trim(),
+        nombre: nombreInput.value.trim(),
+        apellidos: apellidoInput.value.trim(),
+        correo: emailInput.value.trim(),
         telefono: telInput.value.trim(),
-        email:    emailInput.value.trim(),
+        identificacion: cedulaInput.value.trim(),
+        usuario: 'Mario'
     };
     try {
-        if (editando) { await api.put(ENDPOINT + idInput.value + '/', payload); toast('Cliente actualizado.'); }
+        if (editando) { await api.put( ENDPOINT,{ id: idInput.value, ...payload } ); toast('Cliente actualizado.'); }
         else          { await api.post(ENDPOINT, payload);                      toast('Cliente registrado.'); }
         resetForm(); cargar();
     } catch(e) { toast(e.message, 'error'); }
@@ -101,7 +102,7 @@ window.editarCliente = function(c) {
 
 window.desactivarCliente = async function(id) {
     if (!confirm('¿Desactivar este cliente?')) return;
-    try { await api.delete(ENDPOINT + id + '/'); toast('Cliente desactivado.', 'info'); cargar(); }
+    try { await api.delete(ENDPOINT, { id } ); toast('Cliente desactivado.', 'info'); cargar(); }
     catch(e) { toast(e.message, 'error'); }
 };
 

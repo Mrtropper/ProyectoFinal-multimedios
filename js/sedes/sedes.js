@@ -2,8 +2,8 @@
 import { api }                        from '../api.js';
 import { toast, setError, clearError, spinner, markActiveNav } from '../app.js';
 
-const ENDPOINT       = '/sede/';
-const HOTEL_ENDPOINT = '/hotel/';
+const ENDPOINT       = '/sede/sede.php';
+const HOTEL_ENDPOINT = '/hotel/hotel.php';
 
 const form         = document.getElementById('form-sede');
 const idInput      = document.getElementById('sede-id');
@@ -79,14 +79,26 @@ form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validar()) return;
     const payload = {
+        id_hotel: parseInt(hotelSelect.value),
         nombre: nombreInput.value.trim(),
+        pais: 'Costa Rica',
+        provincia: 'San José',
+        ciudad: 'San José',
         direccion: dirInput.value.trim(),
         telefono: telInput.value.trim(),
-        idHotel: hotelSelect.value,
+        correo: '',
+        cantidad_habitaciones: 10,
+        usuario: 'Mario'
     };
     try {
         if (editando) {
-            await api.put(ENDPOINT + idInput.value + '/', payload);
+            await api.put(
+                ENDPOINT,
+                {
+                    id: idInput.value,
+                    ...payload
+                }
+            );
             toast('Sede actualizada.');
         } else {
             await api.post(ENDPOINT, payload);
@@ -110,7 +122,7 @@ window.editarSede = function(s) {
 
 window.desactivarSede = async function(id) {
     if (!confirm('¿Desactivar esta sede?')) return;
-    try { await api.delete(ENDPOINT + id + '/'); toast('Sede desactivada.', 'info'); cargarSedes(); }
+    try { await api.delete( ENDPOINT, { id }); toast('Sede desactivada.', 'info'); cargarSedes(); }
     catch(e) { toast(e.message, 'error'); }
 };
 

@@ -2,8 +2,8 @@
 import { api }                        from '../api.js';
 import { toast, setError, clearError, spinner, markActiveNav } from '../app.js';
 
-const ENDPOINT = '/pago/';
-const RES_EP   = '/reservacion/';
+const ENDPOINT = '/pago/pago.php';
+const RES_EP   = '/reservacion/reservacion.php';
 
 const form      = document.getElementById('form-pago');
 const idInput   = document.getElementById('pago-id');
@@ -78,13 +78,16 @@ form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validar()) return;
     const payload = {
-        idReservacion: resSelect.value,
-        monto:         parseFloat(montoInput.value),
-        metodoPago:    metodoInput.value,
-        fecha:         fechaInput.value,
+        id_reservacion: parseInt(resSelect.value),
+        monto: parseFloat(montoInput.value),
+        metodo: metodoInput.value,
+        detalle: '',
+        estado: 'Pendiente',
+        fecha_pago: fechaInput.value,
+        usuario: 'Mario'
     };
     try {
-        if (editando) { await api.put(ENDPOINT + idInput.value + '/', payload); toast('Pago actualizado.'); }
+        if (editando) { await api.put( ENDPOINT, { id: idInput.value, ...payload } ); toast('Pago actualizado.'); }
         else          { await api.post(ENDPOINT, payload);                      toast('Pago registrado.'); }
         resetForm(); cargar();
     } catch(e) { toast(e.message, 'error'); }
@@ -103,7 +106,7 @@ window.editarPago = function(p) {
 
 window.desactivarPago = async function(id) {
     if (!confirm('¿Desactivar este pago?')) return;
-    try { await api.delete(ENDPOINT + id + '/'); toast('Pago desactivado.', 'info'); cargar(); }
+    try { await api.delete( ENDPOINT, { id } ); toast('Pago desactivado.', 'info'); cargar(); }
     catch(e) { toast(e.message, 'error'); }
 };
 
